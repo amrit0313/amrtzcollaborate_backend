@@ -1,0 +1,33 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mymongo
+    ports:
+      - 27107:27017
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: amrit
+      MONGO_INITDB_ROOT_PASSWORD: something123
+
+  mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://amrit:something123@mongo:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: amrit
+      ME_CONFIG_BASICAUTH_PASSWORD: sth123
+
+    depends_on:
+      - mongo
+
+networks:
+  mongo-net:
+    driver: bridge
+
+volumes:
+  mongo-data:
