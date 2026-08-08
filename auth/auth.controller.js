@@ -204,7 +204,7 @@ const googleCallback = async (req, res) => {
   await req.user.save();
 
   res.redirect(
-    `http://localhost:3000/auth/success?access_token=${accessToken}`,
+    `https://amrtzcollaborate-frontend.vercel.app//auth/success?access_token=${accessToken}`,
   );
 };
 
