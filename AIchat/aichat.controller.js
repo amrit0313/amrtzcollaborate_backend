@@ -61,8 +61,7 @@ export const amrtzAiTalk = async (req, res) => {
 
     // 4. Send entire current conversation to Groq
     const stream = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
-
+      model: "openai/gpt-oss-120b",
       messages: [
         {
           role: "system",
