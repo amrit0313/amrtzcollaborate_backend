@@ -37,7 +37,6 @@ export const amrtzAiTalk = async (req, res) => {
     const previousChats = await AiChat.find({
       user: userId,
     }).sort({ createdAt: 1 });
-    console.log(previousChats);
 
     // 2. Convert your DB format into Groq's message format
     const conversationMessages = [];
@@ -62,7 +61,7 @@ export const amrtzAiTalk = async (req, res) => {
 
     // 4. Send entire current conversation to Groq
     const stream = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+      model: "llama-3.1-8b-instant",
 
       messages: [
         {
